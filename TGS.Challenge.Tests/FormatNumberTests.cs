@@ -88,5 +88,13 @@ namespace TGS.Challenge.Tests
 
             Assert.AreEqual("35,235,235", formatted);
         }
+
+        [Test()]
+        public void Value_1000000000_Returns_ValidString()
+        {
+            var formatted = _formatNumber.Format(1000000000);
+
+            Assert.AreEqual("1,000,000,000", formatted);
+        }
     }
 }
