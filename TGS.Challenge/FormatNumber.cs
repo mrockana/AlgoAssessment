@@ -4,8 +4,8 @@ namespace TGS.Challenge
 {
     /*
         Devise a function that takes an input 'n' (integer) and returns a string that is the
-        decimal representation of that number grouped by commas after every 3 digits. 
-        
+        decimal representation of that number grouped by commas after every 3 digits.
+
         NOTES: You cannot use any built-in formatting functions to complete this task.
 
         Assume: 0 <= n < 1000000000
@@ -22,11 +22,34 @@ namespace TGS.Challenge
         There are accompanying unit tests for this exercise, ensure all tests pass & make
         sure the unit tests are correct too.
      */
+
     public class FormatNumber
     {
         public string Format(int value)
         {
-            return string.Empty;
+            var stringValue = value.ToString();
+            var separator = ",";
+            var separatorDistance = 3;
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException("Value can not be a negative number.");
+            }
+
+            if (value > 1000000000)
+            {
+                throw new ArgumentOutOfRangeException("Value can not be greater than 1000000000.");
+            }
+
+            var numberOfCommas = stringValue.Length / separatorDistance;
+
+            for (int i = 1; i <= numberOfCommas; i++)
+            {
+                var insertIndex = stringValue.Length - ((i * separatorDistance) + (i - 1));
+
+                stringValue = insertIndex != 0 ? stringValue.Insert(insertIndex, separator) : stringValue;
+            }
+
+            return stringValue;
         }
     }
 }
